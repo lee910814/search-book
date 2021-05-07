@@ -13,4 +13,8 @@ public class DBConnection {
         DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
         return ds.getConnection();
     }
+
+    private DBConnection() {
+
+    }
 }
