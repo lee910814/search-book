@@ -6,8 +6,8 @@
               maxActive="100"
               maxIdle="30"
               maxWait="10000"
-              username="root"
+              username="itbank"
               password="it"
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://112.162.32.200:3306/mysql?autoReconnect=true"/>
+              url="jdbc:mysql://112.162.32.200:3306/book?autoReconnect=true"/>
 </Context>
