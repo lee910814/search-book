@@ -9,5 +9,5 @@
               username="itbank"
               password="it"
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://112.162.32.200:3306/book?autoReconnect=true"/>
+              url="jdbc:mysql://zmtq05.dev:3306/book?autoReconnect=true"/>
 </Context>
