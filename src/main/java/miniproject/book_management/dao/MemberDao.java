@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class MemberDao {
@@ -41,5 +43,32 @@ public class MemberDao {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public List<MemberDto> memberList() {
+        List<MemberDto> list = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("select * from member")
+        ) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    MemberDto dto = mappingMember(rs);
+                    list.add(dto);
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private MemberDto mappingMember(ResultSet rs) throws SQLException {
+        MemberDto dto = new MemberDto();
+        dto.setId(rs.getLong("member_id"));
+        dto.setName(rs.getNString("name"));
+        dto.setUsername(rs.getNString("username"));
+        dto.setPassword(rs.getNString("password"));
+        dto.setBirthday(rs.getDate("birthday"));
+        return dto;
     }
 }
