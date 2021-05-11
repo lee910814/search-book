@@ -27,7 +27,7 @@ public class BookDao {
         return false;
     }
 
-    public List<BookDto> bookList() {
+    public List<BookDto> findAll() {
         List<BookDto> list = new ArrayList<>();
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("select * from book")
