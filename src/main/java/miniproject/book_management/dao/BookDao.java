@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDao {
-    public boolean registerBook(BookDto bookDto) {
+    public boolean save(BookDto bookDto) {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(
                      "insert into book(name, publisher, author) VALUES (?, ?, ?)"
