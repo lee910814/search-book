@@ -26,4 +26,29 @@ public class BookManageDao {
         }
         return false;
     }
+
+    public List<BookManageDto> findAll() {
+        List<BookManageDto> list = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("select * from book_manage")
+        ) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    BookManageDto dto = mappingBookManage(rs);
+                    list.add(dto);
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private BookManageDto mappingBookManage(ResultSet rs) throws SQLException {
+        BookManageDto dto = new BookManageDto();
+        dto.setId(rs.getLong("manage_id"));
+        dto.setBookId(rs.getLong("book_id"));
+        dto.setAvailable(rs.getBoolean("available"));
+        return dto;
+    }
 }
