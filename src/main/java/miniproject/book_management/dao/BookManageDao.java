@@ -19,7 +19,7 @@ public class BookManageDao {
              )) {
             ps.setLong(1, bookManageDto.getBookId());
             ps.setBoolean(2, bookManageDto.isAvailable());
-            return ps.execute();
+            return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }

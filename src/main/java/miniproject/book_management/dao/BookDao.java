@@ -20,7 +20,7 @@ public class BookDao {
             ps.setNString(1, bookDto.getName());
             ps.setNString(2, bookDto.getPublisher());
             ps.setNString(3, bookDto.getAuthor());
-            return ps.execute();
+            return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ public class RentalDao {
             ps.setLong(2, rentalDto.getBookId());
             ps.setInt(3, rentalDto.getTermDay());
             ps.setInt(4, rentalDto.getOverdueDay());
-            return ps.execute();
+            return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }

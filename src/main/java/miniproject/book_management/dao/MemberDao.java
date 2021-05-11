@@ -20,7 +20,7 @@ public class MemberDao {
             ps.setNString(2, memberDto.getUsername());
             ps.setNString(3, memberDto.getPassword());
             ps.setDate(4, memberDto.getBirthday());
-            return ps.execute();
+            return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
