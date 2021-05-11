@@ -45,7 +45,7 @@ public class MemberDao {
         return Optional.empty();
     }
 
-    public List<MemberDto> memberList() {
+    public List<MemberDto> findAll() {
         List<MemberDto> list = new ArrayList<>();
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("select * from member")
