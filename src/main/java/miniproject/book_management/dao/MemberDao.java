@@ -6,7 +6,9 @@ import miniproject.book_management.dto.MemberDto;
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class MemberDao {
     public boolean signUp(MemberDto memberDto) {
@@ -21,5 +23,23 @@ public class MemberDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Optional<Long> login(MemberDto memberDto) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("select member_id from member where username = ? and password = ?")
+        ) {
+            ps.setString(1, memberDto.getUsername());
+            ps.setString(2, memberDto.getPassword());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(rs.getLong("member_id"));
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 }
