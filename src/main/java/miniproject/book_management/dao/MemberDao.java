@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MemberDao {
     public boolean save(MemberDto memberDto) {
@@ -27,7 +26,8 @@ public class MemberDao {
         return false;
     }
 
-    public Optional<Long> login(MemberDto memberDto) {
+    public long login(MemberDto memberDto) {
+        long id = 0;
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("select member_id from member where username = ? and password = ?")
         ) {
@@ -36,13 +36,13 @@ public class MemberDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(rs.getLong("member_id"));
+                    id = rs.getLong("member_id");
                 }
             }
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return id;
     }
 
     public List<MemberDto> findAll() {
