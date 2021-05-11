@@ -1,7 +1,6 @@
 package miniproject.book_management.dao;
 
 import miniproject.book_management.connection.DBConnection;
-import miniproject.book_management.dto.BookDto;
 import miniproject.book_management.dto.BookManageDto;
 
 import javax.naming.NamingException;
