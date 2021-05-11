@@ -1,13 +1,13 @@
 package miniproject.book_management.dto;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class MemberDto {
     private Long id;
     private String name;
     private String username;
     private String password;
-    private LocalDate birthday;
+    private Date birthday;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class MemberDto {
         this.password = password;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 }
