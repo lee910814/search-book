@@ -28,4 +28,12 @@ public class BookManageDto {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    public BookManageDto() {
+    }
+
+    public BookManageDto(Long bookId, boolean available) {
+        this.bookId = bookId;
+        this.available = available;
+    }
 }

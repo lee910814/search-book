@@ -46,4 +46,14 @@ public class RentalDto {
     public void setOverdueDay(int overdueDay) {
         this.overdueDay = overdueDay;
     }
+
+    public RentalDto() {
+    }
+
+    public RentalDto(Long memberId, Long bookId, int termDay, int overdueDay) {
+        this.memberId = memberId;
+        this.bookId = bookId;
+        this.termDay = termDay;
+        this.overdueDay = overdueDay;
+    }
 }

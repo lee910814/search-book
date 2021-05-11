@@ -48,4 +48,14 @@ public class MemberDto {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
+
+    public MemberDto() {
+    }
+
+    public MemberDto(String name, String username, String password, Date birthday) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.birthday = birthday;
+    }
 }

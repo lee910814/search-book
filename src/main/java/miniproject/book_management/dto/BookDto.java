@@ -37,4 +37,13 @@ public class BookDto {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public BookDto() {
+    }
+
+    public BookDto(String name, String publisher, String author) {
+        this.name = name;
+        this.publisher = publisher;
+        this.author = author;
+    }
 }
