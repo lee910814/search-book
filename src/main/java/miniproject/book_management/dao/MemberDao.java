@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberDao {
-    public boolean signUp(MemberDto memberDto) {
+    public boolean save(MemberDto memberDto) {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("insert into member(name, username, password, birthday) VALUES (?, ?, ?, ?)")) {
             ps.setNString(1, memberDto.getName());
