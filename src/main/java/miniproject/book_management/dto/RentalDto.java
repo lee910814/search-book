@@ -4,7 +4,7 @@ public class RentalDto {
     private Long id;
     private Long memberId;
     private Long bookId;
-    private int termDay;
+    private int termDay = 7;
     private int overdueDay;
 
     public Long getId() {
