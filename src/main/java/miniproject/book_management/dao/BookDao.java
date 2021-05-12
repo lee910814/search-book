@@ -52,4 +52,22 @@ public class BookDao {
         dto.setAuthor(rs.getNString("author"));
         return dto;
     }
+
+    public List<BookDto> findByName(String name) {
+        List<BookDto> list = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("select * from book where name like ?")
+        ) {
+            ps.setString(1, "%"+name+"%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    BookDto dto = mappingBook(rs);
+                    list.add(dto);
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
