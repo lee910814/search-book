@@ -54,4 +54,29 @@ public class RentalDao {
         dto.setOverdueDay(rs.getInt("overdue_day"));
         return dto;
     }
+
+    public boolean remove(Long memberId, Long bookId) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("delete from rental where member_id = ? and book_id = ?")
+        ) {
+            ps.setLong(1, memberId);
+            ps.setLong(2, bookId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean removeAll(Long memberId) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("delete from rental where member_id = ?")
+        ) {
+            ps.setLong(1, memberId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
