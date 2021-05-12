@@ -9,6 +9,20 @@ public class MemberDto {
     private String password;
     private Date birthday;
 
+    public MemberDto() {
+    }
+
+    public MemberDto(String name, String username, String password, Date birthday) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.birthday = birthday;
+    }
+
+    public void setBirthdayFromString(String year, String month, String day) {
+        this.birthday = Date.valueOf(year + "-" + month + "-" + day);
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,16 +60,6 @@ public class MemberDto {
     }
 
     public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public MemberDto() {
-    }
-
-    public MemberDto(String name, String username, String password, Date birthday) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
         this.birthday = birthday;
     }
 }
