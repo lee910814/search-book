@@ -15,10 +15,23 @@ public class BookManageDao {
     public boolean save(BookManageDto bookManageDto) {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "insert into book_manage(book_id, available) VALUES (?, ?)"
+                     "insert into book_manage(id, available) VALUES (?, ?)"
              )) {
-            ps.setLong(1, bookManageDto.getBookId());
+            ps.setLong(1, bookManageDto.getId());
             ps.setBoolean(2, bookManageDto.isAvailable());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean save(Long id) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(
+                     "insert into book_manage(id) VALUES (?)"
+             )) {
+            ps.setLong(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
@@ -29,7 +42,11 @@ public class BookManageDao {
     public List<BookManageDto> findAll() {
         List<BookManageDto> list = new ArrayList<>();
         try (Connection con = DBConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("select * from book_manage")
+             PreparedStatement ps = con.prepareStatement(
+                     "select m.id, name, publisher, author " +
+                     "from book_manage m " +
+                     "inner join book b on m.id = b.book_id"
+             )
         ) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -45,8 +62,10 @@ public class BookManageDao {
 
     private BookManageDto mappingBookManage(ResultSet rs) throws SQLException {
         BookManageDto dto = new BookManageDto();
-        dto.setId(rs.getLong("manage_id"));
-        dto.setBookId(rs.getLong("book_id"));
+        dto.setId(rs.getLong("id"));
+        dto.setName(rs.getNString("name"));
+        dto.setAuthor(rs.getNString("author"));
+        dto.setPublisher(rs.getNString("publisher"));
         dto.setAvailable(rs.getBoolean("available"));
         return dto;
     }
