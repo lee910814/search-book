@@ -5,7 +5,7 @@
         return;
     }
     if (session.getAttribute("memberId") == null) {
-        response.sendError(HttpServletResponse.SC_FORBIDDEN, "로그인 필요");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인 필요");
         return;
     }
 %>
