@@ -69,4 +69,26 @@ public class BookManageDao {
         dto.setAvailable(rs.getBoolean("available"));
         return dto;
     }
+
+    public List<BookManageDto> findByName(String name) {
+        List<BookManageDto> list = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(
+                     "select m.id, name, publisher, author, available " +
+                     "from book_manage m " +
+                     "inner join book b on m.id = b.book_id " +
+                     "where b.name like ?;")
+        ) {
+            ps.setString(1, "%" + name + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    BookManageDto dto = mappingBookManage(rs);
+                    list.add(dto);
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
