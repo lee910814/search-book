@@ -103,4 +103,16 @@ public class BookManageDao {
         }
         return false;
     }
+
+    public boolean returnBook(Long id) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement("update book_manage set available=1 where id=?")
+        ) {
+            ps.setLong(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
