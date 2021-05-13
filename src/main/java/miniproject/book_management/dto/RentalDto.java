@@ -1,11 +1,22 @@
 package miniproject.book_management.dto;
 
+import java.sql.Date;
+
 public class RentalDto {
     private Long id;
     private Long memberId;
     private Long bookId;
-    private int termDay = 7;
-    private int overdueDay;
+    private Date expireDate;
+
+    public RentalDto(Long id, Long memberId, Long bookId, Date expireDate) {
+        this.id = id;
+        this.memberId = memberId;
+        this.bookId = bookId;
+        this.expireDate = expireDate;
+    }
+
+    public RentalDto() {
+    }
 
     public Long getId() {
         return id;
@@ -31,29 +42,11 @@ public class RentalDto {
         this.bookId = bookId;
     }
 
-    public int getTermDay() {
-        return termDay;
+    public Date getExpireDate() {
+        return expireDate;
     }
 
-    public void setTermDay(int termDay) {
-        this.termDay = termDay;
-    }
-
-    public int getOverdueDay() {
-        return overdueDay;
-    }
-
-    public void setOverdueDay(int overdueDay) {
-        this.overdueDay = overdueDay;
-    }
-
-    public RentalDto() {
-    }
-
-    public RentalDto(Long memberId, Long bookId, int termDay, int overdueDay) {
-        this.memberId = memberId;
-        this.bookId = bookId;
-        this.termDay = termDay;
-        this.overdueDay = overdueDay;
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 }
