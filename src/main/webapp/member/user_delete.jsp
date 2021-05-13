@@ -1,4 +1,4 @@
-<%@page import="miniproject.MemberDao"%>
+<%@page import="miniproject.book_management.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
@@ -7,10 +7,10 @@
     String pw = request.getParameter("pw");
 
     MemberDao member = MemberDao.getInstance();
-    int check = member.userCheck(id,pw);
+    int check = member.checkpw(id,pw);
 
     if(check ==1){
-        member.deleteMember(id);
+        member.deleteUser(id);
         session.invalidate();
     }
 %>
