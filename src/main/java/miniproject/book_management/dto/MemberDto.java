@@ -6,6 +6,7 @@ public class MemberDto {
     private Long id;
     private String name;
     private String username;
+    private String checkpw;
     private String password;
     private Date birthday;
 
@@ -53,6 +54,14 @@ public class MemberDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCheckpw() {
+        return checkpw;
+    }
+
+    public void setCheckpw(String checkpw) {
+        this.checkpw = checkpw;
     }
 
     public Date getBirthday() {
