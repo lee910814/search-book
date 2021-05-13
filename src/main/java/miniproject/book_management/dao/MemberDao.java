@@ -4,6 +4,7 @@ import miniproject.book_management.connection.DBConnection;
 import miniproject.book_management.dto.MemberDto;
 
 import javax.naming.NamingException;
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,9 +12,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static miniproject.book_management.connection.DBConnection.getConnection;
+
 public class MemberDao {
+    private static MemberDao instance =new MemberDao();
+
+      public static MemberDao getInstance(){
+           return instance;
+           }
+
+
+
     public boolean save(MemberDto memberDto) {
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement("insert into member(name, username, password, birthday) VALUES (?, ?, ?, ?)")) {
             ps.setNString(1, memberDto.getName());
             ps.setNString(2, memberDto.getUsername());
@@ -29,7 +40,7 @@ public class MemberDao {
 
     public long login(MemberDto memberDto) {
         long id = 0;
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement("select member_id from member where username = ? and password = ?")
         ) {
             ps.setString(1, memberDto.getUsername());
@@ -48,7 +59,7 @@ public class MemberDao {
 
     public List<MemberDto> findAll() {
         List<MemberDto> list = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement("select * from member")
         ) {
             try (ResultSet rs = ps.executeQuery()) {
@@ -68,7 +79,7 @@ public class MemberDao {
         String sql= null;
 
 
-        try{conn = DBConnection.getConnection();
+        try{conn = getConnection();
             sql = "DELETE FROM member WHERE member_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
@@ -84,6 +95,41 @@ public class MemberDao {
             }
         }
 
+    }
+    public int checkpw(String id,String pw)throws Exception {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "";
+        int x = -1;
+        try {
+            conn = getConnection();
+            sql = "select member_id from member where username = ? and password = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+
+            if (rs.next()) {
+                pw = rs.getString("password");
+                if (pw.equals("password"))
+                    x = 1;//인증 성공
+                else
+                    x = 0;//비밀번호 틀림
+            } else
+                x = -1;//해당 아이디 없음
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                ps.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return  x;
+        }
     }
 
 
