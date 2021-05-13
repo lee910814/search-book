@@ -1,10 +1,8 @@
 package miniproject.book_management.dao;
 
-import miniproject.book_management.connection.DBConnection;
 import miniproject.book_management.dto.MemberDto;
 
 import javax.naming.NamingException;
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +13,13 @@ import java.util.List;
 import static miniproject.book_management.connection.DBConnection.getConnection;
 
 public class MemberDao {
-    private static MemberDao instance =new MemberDao();
+    // 싱글톤 방식이면 오직 getInstance() 함수로만 객체를 얻을 수 있게 해야함.
+    // 기본 생성자가 열려있다... 주의.
+    private static MemberDao instance = new MemberDao();
 
-      public static MemberDao getInstance(){
-           return instance;
-           }
-
-
+    public static MemberDao getInstance() {
+        return instance;
+    }
 
     public boolean save(MemberDto memberDto) {
         try (Connection con = getConnection();
@@ -73,30 +71,35 @@ public class MemberDao {
         }
         return list;
     }
-    public void deleteUser(String id) throws Exception{
+
+    // void 라서 제대로 삭제 되었는지 아닌지 알 수가 없음.
+    public void deleteUser(String id) throws Exception { // 의미 없는 throws.
         Connection conn = null;
         PreparedStatement ps = null;
-        String sql= null;
+        String sql = null; // 의미 없는 null 초기화.
 
-
-        try{conn = getConnection();
+        try {
+            conn = getConnection();
             sql = "DELETE FROM member WHERE member_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.executeUpdate();
 
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally { // try-with-resources 사용하기.
             try {
-                conn.close();ps.close();
-            }catch(Exception e){
+                conn.close();   // null check 하기.
+                ps.close();     // try-with-resources 를 사용하면 필요없음.
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
     }
-    public int checkpw(String id,String pw)throws Exception {
+
+    // 함수명.
+    public int checkpw(String id, String pw) throws Exception { // 의미없는 throws.
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -108,9 +111,16 @@ public class MemberDao {
             sql = "select member_id from member where username = ? and password = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
+            // ?는 두갠데 하나만 설정함.
 
+            // rs에 아무 대입도 안함.
             if (rs.next()) {
+                // pw 에 바로 대입.. 매개변수로 넘어온 pw 값이 버려짐.
                 pw = rs.getString("password");
+
+                // int 대신 enum 사용하기.
+                // SUCCESS, FAIL, NOT_FOUND 등... 바로 알아볼 수 있도록...
+                // 또는 예외를 발생시켜서 호출하는 쪽에서 처리하도록 만들기. -> throw new ...
                 if (pw.equals("password"))
                     x = 1;//인증 성공
                 else
@@ -120,7 +130,7 @@ public class MemberDao {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        } finally { // try-with-resource 사용하기.
             try {
                 conn.close();
                 ps.close();
@@ -128,11 +138,9 @@ public class MemberDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return  x;
+            return x;
         }
     }
-
-
 
     private MemberDto mappingMember(ResultSet rs) throws SQLException {
         MemberDto dto = new MemberDto();

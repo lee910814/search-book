@@ -25,7 +25,7 @@
   <input type="button" value="취소 " onclick="location.href='library.jsp'">
 
 
-</form>
+</form>asd
 
 
 </body>
