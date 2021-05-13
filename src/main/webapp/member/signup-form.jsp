@@ -35,7 +35,7 @@
         <option>12</option>
     </select>
     <input type="number" name="day" class="month" id="day" min="1" max="31" required><br>
-    <button id="button"><a href="#"><b>가입하기</b></a></button>
+    <button id="button"><a href="signup-result.jsp"><b>가입하기</b></a></button>
 </form>
 <script src="${pageContext.request.contextPath}/js/signUp.js"></script>
 </body>
