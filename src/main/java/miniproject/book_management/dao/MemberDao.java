@@ -18,7 +18,8 @@ public class MemberDao {
             ps.setNString(1, memberDto.getName());
             ps.setNString(2, memberDto.getUsername());
             ps.setNString(3, memberDto.getPassword());
-            ps.setDate(4, memberDto.getBirthday());
+            ps.setNString(4, memberDto.getCheckpw());
+            ps.setDate(5, memberDto.getBirthday());
             return ps.executeUpdate() > 0;
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
@@ -61,6 +62,31 @@ public class MemberDao {
         }
         return list;
     }
+    public void deleteUser(String id) throws Exception{
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql= null;
+
+
+        try{conn = DBConnection.getConnection();
+            sql = "DELETE FROM member WHERE member_id=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                conn.close();ps.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
 
     private MemberDto mappingMember(ResultSet rs) throws SQLException {
         MemberDto dto = new MemberDto();
@@ -68,6 +94,7 @@ public class MemberDao {
         dto.setName(rs.getNString("name"));
         dto.setUsername(rs.getNString("username"));
         dto.setPassword(rs.getNString("password"));
+        dto.setCheckpw(rs.getNString("checkpw"));
         dto.setBirthday(rs.getDate("birthday"));
         return dto;
     }
