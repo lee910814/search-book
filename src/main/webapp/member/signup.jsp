@@ -5,6 +5,7 @@
         response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         return;
     }
+    request.setCharacterEncoding("utf-8");
 %>
 <jsp:useBean id="memberDto" class="miniproject.book_management.dto.MemberDto"/>
 <jsp:setProperty name="memberDto" property="*"/>
