@@ -7,31 +7,34 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("utf-8");
 
-  String id = (String)session.getAttribute("username");
-  String pw = request.getParameter("pw");
+    String id = (String) session.getAttribute("username");
+    String pw = request.getParameter("pw");
 
-  MemberDao memberDao = MemberDao.getInstance();
-  if(!memberDao.checkId(id)){
+    MemberDao memberDao = MemberDao.getInstance();
+    if (!memberDao.checkId(id)) {
 
 %>
 <script>
-  alert("비밀번호가 틀렸습니다.");
-  location.href="";
+    alert("비밀번호가 틀렸습니다.");
+    location.href = "";
 </script>
-<%}else{
-  if(memberDao.deleteUser(id)){
-    session.invalidate();
+<%
+} else {
+    if (memberDao.deleteUser(id)) {
+        session.invalidate();
 %>
 <script>
-  alert("회원탈퇴가 정상 처리 되었습니다.")
-  location.href="";
+    alert("회원탈퇴가 정상 처리 되었습니다.")
+    location.href = "";
 </script>
-<%}else{%>
+<%} else {%>
 <script>
-  alert("회원 탈퇴에 실패했습니다.")
-  location.href="";
+    alert("회원 탈퇴에 실패했습니다.")
+    location.href = "";
 </script>
-<%}
-}%>
+<%
+        }
+    }
+%>

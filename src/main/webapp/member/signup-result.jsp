@@ -6,22 +6,23 @@
     <title>회원가입 결과</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        #wrap{
-            width:100%;
-            height:100%;
-            background:rgb(233, 227, 227);
-            position:relative;
-        }
-        #wrap .box{
-            width:500px;
-            height:500px;
-            position:absolute;
-            left:45%;
-            top:35%;
-            margin-left:-150px;
-            margin-top:-150px;
+
+        #wrap {
+            width: 100%;
+            height: 100%;
+            background: rgb(233, 227, 227);
+            position: relative;
         }
 
+        #wrap .box {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 45%;
+            top: 35%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
 
 
         .box {
@@ -34,7 +35,8 @@
             height: 500px;
 
         }
-        h1{
+
+        h1 {
             margin: 40px;
             font-size: 3rem;
             font-family: 'Ubuntu', sans-serif;
@@ -50,7 +52,8 @@
             margin: 10px;
 
         }
-        button:hover{
+
+        button:hover {
             cursor: pointer;
         }
 
@@ -59,7 +62,6 @@
             font-size: 1.5rem;
             font-family: 'Ubuntu', sans-serif;
         }
-
 
 
     </style>
@@ -72,7 +74,9 @@
             5만 권 도서를 즐겨보세요<br>
             오직 library 에서
         </p>
-        <a href="main.jsp"><button type="submit"><b>홈으로</b></button></a>
+        <a href="main.jsp">
+            <button type="submit"><b>홈으로</b></button>
+        </a>
     </div>
 </div>
 

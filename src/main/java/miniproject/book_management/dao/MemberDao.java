@@ -15,15 +15,12 @@ import static miniproject.book_management.connection.DBConnection.getConnection;
 public class MemberDao {
     private static final MemberDao instance = new MemberDao();
 
-
-
     private MemberDao() {
     }
 
     public static MemberDao getInstance() {
         return instance;
     }
-
 
     public boolean save(MemberDto memberDto) {
         try (Connection con = getConnection();
@@ -75,10 +72,9 @@ public class MemberDao {
         return list;
     }
 
-
-    public boolean insertMember(MemberDto dto) {
+/*    public boolean insertMember(MemberDto dto) {
         boolean flag = false;
-        String sql = "INSET INTO member VALUE(?,?,?)";
+        String sql = "INSERT INTO member(password, name, username) VALUE(?,?,?)";
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -92,11 +88,11 @@ public class MemberDao {
             e.printStackTrace();
         }
         return flag;
-    }
+    }*/
 
     //중복 ID여부 검증 메서드
     public boolean checkId(String id) {
-        String sql = "SELECT % FROM member WHERE username=?";
+        String sql = "SELECT * FROM member WHERE username=?";
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, id);
@@ -108,7 +104,6 @@ public class MemberDao {
         }
         return false;
     }
-
 
     public boolean deleteUser(String id) {
         String sql = "DELETE FROM member WHERE username=?";
@@ -122,7 +117,6 @@ public class MemberDao {
         }
         return false;
     }
-
 
     private MemberDto mappingMember(ResultSet rs) throws SQLException {
         MemberDto dto = new MemberDto();

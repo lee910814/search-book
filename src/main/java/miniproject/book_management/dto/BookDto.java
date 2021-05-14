@@ -6,6 +6,15 @@ public class BookDto {
     private String publisher;
     private String author;
 
+    public BookDto() {
+    }
+
+    public BookDto(String name, String publisher, String author) {
+        this.name = name;
+        this.publisher = publisher;
+        this.author = author;
+    }
+
     public Long getId() {
         return id;
     }
@@ -35,15 +44,6 @@ public class BookDto {
     }
 
     public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public BookDto() {
-    }
-
-    public BookDto(String name, String publisher, String author) {
-        this.name = name;
-        this.publisher = publisher;
         this.author = author;
     }
 }

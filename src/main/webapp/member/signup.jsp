@@ -1,6 +1,6 @@
 <%@ page import="miniproject.book_management.dao.MemberDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="/fragments/is-method-post.jsp"%>
+<%@ include file="/fragments/is-method-post.jsp" %>
 <%
     request.setCharacterEncoding("utf-8");
 %>
