@@ -7,6 +7,11 @@
 <jsp:useBean id="memberDto" class="miniproject.book_management.dto.MemberDto"/>
 <jsp:setProperty name="memberDto" property="*"/>
 <%
+    if (memberDto.getName().equalsIgnoreCase("admin")) {
+        response.sendRedirect("signup-result.jsp?ok=false");
+        return;
+    }
+
     if (!request.getParameter("password2").equals(memberDto.getPassword())) {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
         return;
