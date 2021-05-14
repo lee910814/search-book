@@ -7,5 +7,6 @@
 </head>
 <body>
 <h1>로그인이 필요합니다.</h1>
+<a href="${pageContext.request.contextPath}/member/login-form.jsp">로그인</a>
 </body>
 </html>
