@@ -1,9 +1,5 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%
-
     session.invalidate();
-    response.sendRedirect("");
-
-
+    response.sendRedirect("/");
 %>
