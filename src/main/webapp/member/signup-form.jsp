@@ -4,55 +4,7 @@
 <head>
     <%@ include file="/fragments/common-head.jsp" %>
     <title>library</title>
-    <style>
-        body {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        h1 {
-            margin: 50px;
-        }
-
-        input {
-            margin: 10px;
-            width: 300px;
-            height: 40px;
-            border: 0.3px solid rgb(218, 215, 215);
-            border-radius: 10px;
-        }
-
-        span, label{
-            font-size: 1.2em;
-        }
-
-        button {
-            width: 220px;
-            height: 60px;
-            border-radius: 50px;
-            background-color: rgb(17, 116, 70);
-            margin: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-            font-size: 1.5em;
-        }
-
-        select {
-            width: 70px;
-            height: 40px;
-        }
-
-        .year {
-            width: 100px;
-        }
-
-        .month {
-            width: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signup.css">
 </head>
 <body>
 <h1><b>회원가입</b></h1>
