@@ -15,7 +15,7 @@ import static miniproject.book_management.connection.DBConnection.getConnection;
 public class MemberDao {
     // 싱글톤 방식이면 오직 getInstance() 함수로만 객체를 얻을 수 있게 해야함.
     // 기본 생성자가 열려있다... 주의.
-    private static MemberDao instance = new MemberDao();
+    private static final MemberDao instance = new MemberDao();
 
     public static MemberDao getInstance() {
         return instance;
@@ -151,5 +151,20 @@ public class MemberDao {
         dto.setCheckpw(rs.getNString("checkpw"));
         dto.setBirthday(rs.getDate("birthday"));
         return dto;
+    }
+
+    public boolean isAdmin(long id) {
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement("select name from member where member_id = ?")) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("name").equalsIgnoreCase("admin");
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
