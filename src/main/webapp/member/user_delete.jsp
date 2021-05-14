@@ -17,6 +17,7 @@
 <!DOCTYPE>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>회원탈퇴</title>
 </head>
 <body>

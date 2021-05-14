@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>library</title>
     <style>
         body {

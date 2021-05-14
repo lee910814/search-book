@@ -3,8 +3,9 @@
 <jsp:useBean id="bookDao" class="miniproject.book_management.dao.BookDao"/>
 <html>
 <head>
-    <title>검색 결과</title>
+    <%@ include file="/fragments/common-head.jsp" %>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/book.css">
+    <title>검색 결과</title>
 </head>
 <body>
 <div class="results">

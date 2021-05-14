@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>책 검색</title>
 </head>
 <body>

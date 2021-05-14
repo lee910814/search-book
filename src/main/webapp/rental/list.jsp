@@ -4,6 +4,7 @@
 <jsp:useBean id="rentalDao" class="miniproject.book_management.dao.RentalDao"/>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>대여한 책</title>
 </head>
 <body>

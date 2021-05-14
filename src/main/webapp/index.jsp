@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>JSP - Hello World</title>
 </head>
 <body>

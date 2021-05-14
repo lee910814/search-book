@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>로그인</title>
 </head>
 <body>

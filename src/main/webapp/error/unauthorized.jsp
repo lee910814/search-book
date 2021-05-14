@@ -2,6 +2,7 @@
 <%@ page isErrorPage="true" %>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>로그인 필요</title>
 </head>
 <body>

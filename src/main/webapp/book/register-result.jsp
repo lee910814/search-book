@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <%@ include file="/fragments/common-head.jsp" %>
     <title>등록 결과</title>
 </head>
 <body>
