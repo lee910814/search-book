@@ -77,7 +77,7 @@ public class BookDao {
              PreparedStatement ps = con.prepareStatement(
                      "select b.book_id, b.name, b.publisher, b.author " +
                      "from book b left join book_manage bm on b.book_id = bm.id " +
-                     "where bm.id is null")
+                     "where bm.id is null and b.name like ?")
         ) {
             ps.setString(1, "%" + name + "%");
             try (ResultSet rs = ps.executeQuery()) {
