@@ -11,16 +11,17 @@
 </head>
 <body>
 <div class="results">
-    <c:forEach items="${bookDao.findByName(param.name)}" var="book" varStatus="vs">
-        <form action="register.jsp" method="post" class="result">
-            <input type="number" name="id" value="${book.id}" hidden readonly>
+    <c:forEach items="${bookDao.findByNameNotRegistered(param.name)}" var="book" varStatus="vs">
+        <div class="result">
             <p>제목: ${book.name}</p>
             <p>저자: ${book.author}</p>
             <p>출판사: ${book.publisher}</p>
-            <button type="submit">등록</button>
-        </form>
+            <button type="submit" class="register-button" value="${book.id}">등록</button>
+        </div>
     </c:forEach>
 </div>
 
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="${pageContext.request.contextPath}/js/bookAjax.js"></script>
 </body>
 </html>

@@ -19,6 +19,16 @@ $(document).ready(() => {
             }
         }).complete({message: "반납되었습니다."}, reply)
     })
+
+    $(".register-button").click((e) => {
+        $.ajax({
+            url: "register.jsp",
+            type: "post",
+            data: {
+                id: e.target.value
+            }
+        }).complete({message: "등록되었습니다."}, reply)
+    })
 })
 
 /**
