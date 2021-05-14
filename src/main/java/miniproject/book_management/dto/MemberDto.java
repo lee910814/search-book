@@ -6,11 +6,6 @@ public class MemberDto {
     private Long id;
     private String name;
     private String username;
-
-    // form 에서 넘겨서 param.checkpw 로 받아오기.
-    // 저장할 필요 없이 체크하고 버리면 됨.
-    // 할거면 boolean checkPw(String otherPw) 같은 메소드로 만들기.
-    private String checkpw;
     private String password;
     private Date birthday;
 
@@ -58,14 +53,6 @@ public class MemberDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getCheckpw() {
-        return checkpw;
-    }
-
-    public void setCheckpw(String checkpw) {
-        this.checkpw = checkpw;
     }
 
     public Date getBirthday() {
