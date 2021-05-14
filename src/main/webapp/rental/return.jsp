@@ -3,16 +3,8 @@
 <jsp:useBean id="bookManageDao" class="miniproject.book_management.dao.BookManageDao"/>
 <jsp:useBean id="rentalDao" class="miniproject.book_management.dao.RentalDao"/>
 
-<%
-    if (!request.getMethod().equalsIgnoreCase("POST")) {
-        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        return;
-    }
-    if (session.getAttribute("memberId") == null) {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-        return;
-    }
-%>
+<%@ include file="/fragments/is-method-post.jsp" %>
+<%@ include file="/fragments/is-logged-in.jsp" %>
 
 <c:choose>
     <c:when test="${rentalDao.remove(sessionScope.memberId, param.id) and bookManageDao.returnBook(param.id)}">
