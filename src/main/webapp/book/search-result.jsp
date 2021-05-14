@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="bookDao" class="miniproject.book_management.dao.BookDao"/>
+<%@ include file="/fragments/is-admin.jsp" %>
+
 <html>
 <head>
     <%@ include file="/fragments/common-head.jsp" %>

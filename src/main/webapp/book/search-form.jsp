@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/fragments/is-admin.jsp" %>
 <html>
 <head>
     <%@ include file="/fragments/common-head.jsp" %>
