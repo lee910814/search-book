@@ -1,11 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    if (session.getAttribute("memberId") == null) {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-        return;
-    }
-%>
+<%@ include file="/fragments/is-logged-in.jsp" %>
 <jsp:useBean id="rentalDao" class="miniproject.book_management.dao.RentalDao"/>
 <html>
 <head>

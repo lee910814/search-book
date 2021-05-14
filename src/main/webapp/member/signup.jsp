@@ -1,10 +1,7 @@
 <%@ page import="miniproject.book_management.dao.MemberDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/fragments/is-method-post.jsp"%>
 <%
-    if (!request.getMethod().equalsIgnoreCase("POST")) {
-        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        return;
-    }
     request.setCharacterEncoding("utf-8");
 %>
 <jsp:useBean id="memberDto" class="miniproject.book_management.dto.MemberDto"/>

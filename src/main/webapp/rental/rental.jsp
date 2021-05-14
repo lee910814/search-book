@@ -1,14 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%
-    if (!request.getMethod().equalsIgnoreCase("POST")) {
-        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        return;
-    }
-    if (session.getAttribute("memberId") == null) {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인 필요");
-        return;
-    }
-%>
+<%@ include file="/fragments/is-method-post.jsp"%>
+<%@ include file="/fragments/is-logged-in.jsp"%>
 <jsp:useBean id="bookManageDao" class="miniproject.book_management.dao.BookManageDao"/>
 <jsp:useBean id="rentalDao" class="miniproject.book_management.dao.RentalDao"/>
 <jsp:useBean id="rentalDto" class="miniproject.book_management.dto.RentalDto"/>
