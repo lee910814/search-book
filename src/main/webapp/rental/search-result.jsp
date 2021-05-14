@@ -21,6 +21,6 @@
 </c:forEach>
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script src="${pageContext.request.contextPath}/js/rental.js"></script>
+<script src="${pageContext.request.contextPath}/js/bookAjax.js"></script>
 </body>
 </html>
