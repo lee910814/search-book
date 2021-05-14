@@ -1,10 +1,6 @@
+<%@ page import="java.sql.ResultSet" %>
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%
-    if (session.getAttribute("id") == null) {
-        response.sendRedirect("");
-    } else {
-%>
 
 <!DOCTYPE html>
 <html>
@@ -19,10 +15,9 @@
     <input type="password" name="check_pw" placeholder="비밀번호를 입력해주세요">
 
     <input type="submit" value="회원탈퇴">
-    <input type="button" value="취소 " onclick="location.href='library.jsp'">
+    <input type="button" value="취소 " onclick="location.href='index.jsp'">
 
 </form>
 
 </body>
 </html>
-<%}%>
