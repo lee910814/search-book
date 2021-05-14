@@ -58,7 +58,28 @@ public class BookDao {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("select * from book where name like ?")
         ) {
-            ps.setString(1, "%"+name+"%");
+            ps.setString(1, "%" + name + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    BookDto dto = mappingBook(rs);
+                    list.add(dto);
+                }
+            }
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<BookDto> findByNameNotRegistered(String name) {
+        List<BookDto> list = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(
+                     "select b.book_id, b.name, b.publisher, b.author " +
+                     "from book b left join book_manage bm on b.book_id = bm.id " +
+                     "where bm.id is null")
+        ) {
+            ps.setString(1, "%" + name + "%");
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     BookDto dto = mappingBook(rs);
