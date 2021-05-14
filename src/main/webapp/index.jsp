@@ -47,7 +47,7 @@
                 <option>도서번호</option>
             </select>--%>
         <input id="bookName" type="text" name="name" placeholder="검색어를 입력해주세요">
-        <input type="button" id="search" value="검색">
+        <button id="search" type="submit">검색</button>
     </form>
 </section>
 </body>
