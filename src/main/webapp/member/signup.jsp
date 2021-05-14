@@ -22,6 +22,6 @@
 
     memberDto.setBirthdayFromString(year, month, day);
 
-    boolean ok = new MemberDao().save(memberDto);
+    boolean ok = MemberDao.getInstance().save(memberDto);
     response.sendRedirect("signup-result.jsp?ok=" + ok);
 %>

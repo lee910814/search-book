@@ -10,7 +10,7 @@
 <jsp:useBean id="memberDto" class="miniproject.book_management.dto.MemberDto"/>
 <jsp:setProperty name="memberDto" property="*"/>
 <%
-    long id = new MemberDao().login(memberDto);
+    long id = MemberDao.getInstance().login(memberDto);
     if (id == 0) {
         response.sendRedirect("login-form.jsp");
         return;

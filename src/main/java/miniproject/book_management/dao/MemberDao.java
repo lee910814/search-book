@@ -13,9 +13,11 @@ import java.util.List;
 import static miniproject.book_management.connection.DBConnection.getConnection;
 
 public class MemberDao {
-    // 싱글톤 방식이면 오직 getInstance() 함수로만 객체를 얻을 수 있게 해야함.
-    // 기본 생성자가 열려있다... 주의.
+
     private static final MemberDao instance = new MemberDao();
+
+    private MemberDao() {
+    }
 
     public static MemberDao getInstance() {
         return instance;
