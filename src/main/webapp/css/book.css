@@ -1,3 +1,19 @@
+.results {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .result {
-    border-bottom: gray 1px solid;
+    border: gray 1px solid;
+    border-radius: 20px;
+    min-width: 21%;
+    padding: 10px;
+    margin: 0;
+}
+
+button {
+    background-color: rgb(17, 116, 70);
+    color: white;
+    border-radius: 10px;
 }
