@@ -13,11 +13,9 @@
         <p>제목: ${book.name}</p>
         <p>저자: ${book.author}</p>
         <p>출판사: ${book.publisher}</p>
-        <p>
-            <c:if test="${book.available}">대여 가능</c:if>
-            <c:if test="${not book.available}">대여 불가</c:if>
-        </p>
-        <button class="rental-button" value="${book.id}">대여하기</button>
+        <c:if test="${book.available}">
+            <button class="rental-button" value="${book.id}">대여하기</button>
+        </c:if>
     </div>
 </c:forEach>
 
